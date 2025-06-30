@@ -197,7 +197,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.gralloc.disable_ubwc=0
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    debug.sf.enable_hwc_vds=0
+    debug.sf.enable_hwc_vds=0 \
+    ro.launcher.blur.appLaunch=0
 
 # HWUI
 PRODUCT_PROPERTY_OVERRIDES += \
