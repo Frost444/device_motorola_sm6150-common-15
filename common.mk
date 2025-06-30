@@ -115,7 +115,6 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.service \
     android.hardware.soundtrigger@2.2-impl \
     android.hardware.bluetooth.audio-impl \
-    audio.primary.default \
     audio.bluetooth.default \
     audio.primary.sm6150 \
     audio.r_submix.default \
@@ -224,51 +223,21 @@ PRODUCT_PACKAGES += \
     libhwbinder.vendor \
     libutils.vendor
 
-# Android Go
-PRODUCT_ALWAYS_PREOPT_EXTRACTED_APK := true 
-PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := frameworks/base/config/boot-image-profile.txt
-PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
+# ART Debugging (Disable)
 USE_DEX2OAT_DEBUG := false
-WITH_DEXPREOPT_DEBUG_INFO := false
-
-# Disable async MTE on system_server
-PRODUCT_SYSTEM_EXT_PROPERTIES += \
-    arm64.memtag.process.system_server=off
-
-# Do not generate libartd.
+PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 
-# Strip the local variable table and the local variable type table to reduce
-# the size of the system image. This has no bearing on stack traces, but will
-# leave less information available via JDWP.
-PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
-
-# Reduce SystemServer Debug
-PRODUCT_SYSTEM_SERVER_DEBUG_INFO := false
-
-# Scudo
-PRODUCT_DISABLE_SCUDO := true
-TARGET_VNDK_USE_CORE_VARIANT := true
-
-# Don't compile SystemUITests
-EXCLUDE_SYSTEMUI_TESTS := true
-
-# Java Optimizations
-SYSTEM_OPTIMIZE_JAVA := true
-SYSTEMUI_OPTIMIZE_JAVA := true
-FULL_SYSTEM_OPTIMIZE_JAVA := true
-
-# DebugFS
-PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
-
-# Dexpreopt
-PRODUCT_DEXPREOPT_SPEED_APPS += \
-    Launcher3QuickStep \
-    SystemUI \
-    Settings
-
-# Speed profile services and wifi-service to reduce RAM and storage
+# Android Go
+PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := frameworks/base/config/boot-image-profile.txt
+PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
 PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
+
+# Preopt SystemUI.
+PRODUCT_DEXPREOPT_SPEED_APPS += SystemUIGoogle  # For internal
+PRODUCT_DEXPREOPT_SPEED_APPS += SystemUI  # For AOSP
+PRODUCT_DEXPREOPT_SPEED_APPS += Settings
+PRODUCT_DEXPREOPT_SPEED_APPS += Launcher3QuickStep
 
 # Updater
 PRODUCT_PROPERTY_OVERRIDES += \
