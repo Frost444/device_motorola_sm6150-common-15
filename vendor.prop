@@ -15,3 +15,6 @@ debug.fdsan=0
 
 # traced
 persist.traced.enable=0
+
+debug.sf.frame_rate_multiple_threshold=0.5
+debug.hwui.skip_empty_frames=true
