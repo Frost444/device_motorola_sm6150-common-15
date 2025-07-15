@@ -33,6 +33,9 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
 # A/B
 AB_OTA_UPDATER := true
 
+# AudioFX
+TARGET_EXCLUDES_AUDIOFX := true
+
 AB_OTA_PARTITIONS += \
     boot \
     dtbo \
@@ -137,6 +140,7 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio-impl \
     audio.bluetooth.default \
     audio.primary.sm6150 \
+    audio.primary.default \
     audio.r_submix.default \
     audio.usb.default \
     libaudio-resampler \
@@ -243,14 +247,22 @@ PRODUCT_PACKAGES += \
     libhwbinder.vendor \
     libutils.vendor
 
-# ART Debugging (Disable)
-USE_DEX2OAT_DEBUG := false
-PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
-PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
-
-# Android Go
+# Android Go Tunnings
 PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := frameworks/base/config/boot-image-profile.txt
 PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
+USE_DEX2OAT_DEBUG := false
+WITH_DEXPREOPT_DEBUG_INFO := false
+
+# Do not generate libartd.
+PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
+
+# Strip the local variable table and the local variable type table to reduce
+# the size of the system image. This has no bearing on stack traces, but will
+# leave less information available via JDWP.
+PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
+
+# Speed profile services and wifi-service to reduce RAM and storage
+PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
 
 # Updater
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -259,6 +271,16 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Mobile data
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.mobiledata=false
+
+# Dexpreopt
+PRODUCT_DEXPREOPT_SPEED_APPS += \
+    Launcher3QuickStep \
+    SystemUIGoogle \
+    SystemUI \
+    Settings
+
+# DebugFS
+PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
 
 # Device ID attestation
 PRODUCT_COPY_FILES += \
