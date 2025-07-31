@@ -203,7 +203,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # HWUI
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwui.use_hint_manager=true \
-    debug.hwui.target_cpu_time_percent=30
+    debug.hwui.target_cpu_time_percent=10
 
 # IMS
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -327,7 +327,8 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.surface_flinger.use_color_management=true \
     ro.surface_flinger.wcg_composition_dataspace=143261696 \
     ro.surface_flinger.protected_contents=true \
-    ro.surface_flinger.enable_frame_rate_override=false
+    ro.surface_flinger.enable_frame_rate_override=false \
+    ro.surface_flinger.clear_slots_with_set_layer_buffer=true
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     debug.sf.use_phase_offsets_as_durations=1 \
