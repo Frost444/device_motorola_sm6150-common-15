@@ -134,6 +134,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.charger.enable_suspend=true
 
+# Chipset
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.soc.manufacturer=QTI \
+    ro.soc.model=SM7150
+
 # CNE
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.vendor.cne.feature=1
