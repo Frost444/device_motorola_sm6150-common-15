@@ -4,3 +4,6 @@ get_prop(system_app, vendor_fm_prop)
 # Allow system_app to access zram sysfs nodes
 allow system_app sysfs_zram:dir search;
 allow system_app sysfs_zram:file r_file_perms;
+
+# Allow system apps to read qemu props
+get_prop(system_app, qemu_hw_prop)
