@@ -220,7 +220,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Logs
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.log.tag.OpenGLRenderer=S \
-    persist.log.tag.ACDB-LOADER=S
+    persist.log.tag.ACDB-LOADER=S \
+    persist.log.tag.QMI_FW=S
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
