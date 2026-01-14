@@ -47,6 +47,10 @@ on init
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
+    # Workarround for cache
+    rm /data/resource-cache
+    rm /data/system/package_cache
+
 on early-fs
     start vold
 
