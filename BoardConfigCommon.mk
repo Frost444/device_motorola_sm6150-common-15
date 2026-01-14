@@ -169,7 +169,7 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     $(VENDOR_PATH)/framework_compatibility_matrix.xml \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix_legacy.xml \
-    vendor/derp/config/device_framework_matrix.xml
+    vendor/aosp/config/device_framework_matrix.xml
 DEVICE_MATRIX_FILE := $(VENDOR_PATH)/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE := $(VENDOR_PATH)/manifest.xml
 
@@ -183,7 +183,6 @@ TARGET_SYSTEM_PROP += $(VENDOR_PATH)/system.prop
 # Jemalloc
 MALLOC_SVELTE := true
 MALLOC_SVELTE_FOR_LIBC32 := true
-MALLOC_SVELTE_FOR_LIBC64 := true
 
 # Lineage Health
 TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_BYPASS := false
@@ -203,12 +202,6 @@ ifeq ($(PRODUCT_USE_DYNAMIC_PARTITIONS), true)
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
-ifneq ($(WITH_GMS),true)
-BOARD_PRODUCTIMAGE_EXTFS_INODE_COUNT := -1
-BOARD_PRODUCTIMAGE_PARTITION_RESERVED_SIZE := 600000000
-BOARD_SYSTEMIMAGE_EXTFS_INODE_COUNT := -1
-BOARD_SYSTEMIMAGE_PARTITION_RESERVED_SIZE := 800000000
-endif
 BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_MOT_DP_GROUP_PARTITION_LIST := product system vendor
 BOARD_MOT_DP_GROUP_SIZE := 4864868352
@@ -242,7 +235,7 @@ VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 # SELinux
 TARGET_SEPOLICY_DIR := msmsteppe
 include device/qcom/sepolicy_vndr/SEPolicy.mk
-include device/lineage/sepolicy/libperfmgr/sepolicy.mk
+include device/aosp/sepolicy/libperfmgr/sepolicy.mk
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy/private
 BOARD_VENDOR_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy/vendor
 
